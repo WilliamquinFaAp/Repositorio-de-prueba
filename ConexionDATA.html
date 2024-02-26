@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<title> Database</title>
+<!--BIBLIOTECA DE FIREBASE-->
+<!-- Agrega la biblioteca de Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js"></script>
+
+
+
+<!--MY DATABASE-->
+
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBr34r5FlKEDKnaPNh_MFqBhGoOSr_9CKs",
+  authDomain: "quinteros-c47eb.firebaseapp.com",
+  databaseURL: "https://quinteros-c47eb-default-rtdb.firebaseio.com",
+  projectId: "quinteros-c47eb",
+  storageBucket: "quinteros-c47eb.appspot.com",
+  messagingSenderId: "341391081495",
+  appId: "1:341391081495:web:388afdb549fd58fecddc52",
+  measurementId: "G-7XVYFTCZ32"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+
+
+    </head>
+    <body>
+        const database = firebase.database();
+    </script>
+    
+    <!-- Ejemplo de agregar y leer datos -->
+    <script>
+      // Agrega datos a la base de datos
+      function agregarDatos() {
+        const nuevoUsuario = {
+          nombre: "Ejemplo",
+          email: "ejemplo@correo.com",
+          edad: 25
+        };
+    
+        const nuevoUsuarioKey = database.ref('usuarios').push().key;
+        const updates = {};
+        updates['/usuarios/' + nuevoUsuarioKey] = nuevoUsuario;
+    
+        return database.ref().update(updates);
+      }
+    
+      // Lee datos de la base de datos
+      function leerDatos() {
+        database.ref('usuarios').once('value').then((snapshot) => {
+          console.log(snapshot.val());
+        });
+      }
+    
+      // Llama a las funciones para agregar y leer datos
+      agregarDatos().then(() => {
+        console.log("Datos agregados correctamente");
+        leerDatos();
+      }).catch((error) => {
+        console.error("Error: ", error);
+      });
+    </script>
+
+
+
+
+    </body>
+    <FOOTer>
+
+    </FOOTer>
+</html>
